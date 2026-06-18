@@ -469,9 +469,7 @@ unsigned int ArgosTxService::service_next_schedule_in_ms() {
 				return m_sched.schedule_duty_cycle(argos_config, now);
 			}
 			if (argos_config.mode == BaseArgosMode::LEGACY) {
-				m_scheduled_mode = argos_config.adaptive_modulation
-					? KineisModulation::LDA2
-					: resolve_non_adaptive_modulation();
+				m_scheduled_mode = KineisModulation::LDK;
 #ifdef BOARD_RSPB
 				if (argos_config.adaptive_modulation && argos_config.sensor_tx_enable) {
 					unsigned int pkt_fmt = configuration_store->read_param<unsigned int>(ParamID::RSPB_PACKET_FORMAT);
